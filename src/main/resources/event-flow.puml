@@ -1,0 +1,21 @@
+@startuml
+
+start
+
+:FooEventListener;
+:BarEventListener;
+split
+    :TarEventListener;
+    :ZarEventListener;
+    end
+split again
+    :ZarEventListener;
+    end
+end split
+
+start
+   :EventListener;
+   note right: Listens for all events
+end
+
+@enduml
