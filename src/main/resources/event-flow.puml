@@ -3,12 +3,17 @@
 start
 
 :FooEventListener;
+-> FooEvent;
 :BarEventListener;
+-> List(TarEvent, ZarEvent);
 split
+    -> TarEvent;
     :TarEventListener;
+    -> ZarEvent;
     :ZarEventListener;
     end
 split again
+    -> ZarEvent;
     :ZarEventListener;
     end
 end split
