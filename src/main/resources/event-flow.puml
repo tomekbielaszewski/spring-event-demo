@@ -30,7 +30,7 @@ end split
 
 start
    :EventListener;
-   note right: Listens for all events
+   note right: Listens for all events extending Event
 end
 
 @enduml
