@@ -18,8 +18,10 @@ Output:
 [           main] pl.grizwold.listeners.TarEventListener   : Raising ZarEvent(payload=Kaboom!!)
 [           main] pl.grizwold.listeners.EventListener      : Processing ZarEvent(payload=Kaboom!!)
 [           main] pl.grizwold.listeners.ZarEventListener   : Processing ZarEvent(payload=Kaboom!!)
+[           main] p.g.listeners.ZarEventSecondListener     : Second processing ZarEvent(payload=Kaboom!!)
 [           main] pl.grizwold.listeners.EventListener      : Processing ZarEvent(payload=Kaboom!!)
 [           main] pl.grizwold.listeners.ZarEventListener   : Processing ZarEvent(payload=Kaboom!!)
+[           main] p.g.listeners.ZarEventSecondListener     : Second processing ZarEvent(payload=Kaboom!!)
 [           main] pl.grizwold.listeners.EventListener      : Processing BarEvent(payload=Kaboom!!)
 ```
 
@@ -27,17 +29,23 @@ Output:
 Output for async listeners with FixedThreadPool(4) executor:
 
 [           main] pl.grizwold.SpringEventDemoApplication   : Publishing async event...
+[pool-1-thread-1] p.g.a.listeners.AnotherEventListener     : Processing AnotherFooEvent(payload=Kaboom!!)
 [pool-1-thread-2] p.g.a.listeners.AnotherFooEventListener  : Processing AnotherFooEvent(payload=Kaboom!!)
 [pool-1-thread-2] p.g.a.listeners.AnotherFooEventListener  : Raising AnotherBarEvent(payload=Kaboom!!)
-[pool-1-thread-1] p.g.a.listeners.AnotherEventListener     : Processing AnotherFooEvent(payload=Kaboom!!)
+[pool-1-thread-4] p.g.a.listeners.AnotherEventListener     : Processing AnotherBarEvent(payload=Kaboom!!)
 [pool-1-thread-3] p.g.a.listeners.AnotherBarEventListener  : Processing AnotherBarEvent(payload=Kaboom!!)
 [pool-1-thread-3] p.g.a.listeners.AnotherBarEventListener  : Raising [AnotherTarEvent(payload=Kaboom!!), AnotherZarEvent(payload=Kaboom!!)]
-[pool-1-thread-2] p.g.a.listeners.AnotherEventListener     : Processing AnotherTarEvent(payload=Kaboom!!)
-[pool-1-thread-1] p.g.a.listeners.AnotherTarEventListener  : Processing AnotherTarEvent(payload=Kaboom!!)
-[pool-1-thread-1] p.g.a.listeners.AnotherTarEventListener  : Raising AnotherZarEvent(payload=Kaboom!!)
-[pool-1-thread-1] p.g.a.listeners.AnotherEventListener     : Processing AnotherZarEvent(payload=Kaboom!!)
-[pool-1-thread-1] p.g.a.listeners.AnotherZarEventListener  : Processing AnotherZarEvent(payload=Kaboom!!)
-[pool-1-thread-1] p.g.a.listeners.AnotherEventListener     : Processing AnotherZarEvent(payload=Kaboom!!)
+[pool-1-thread-1] p.g.a.listeners.AnotherEventListener     : Processing AnotherTarEvent(payload=Kaboom!!)
+[pool-1-thread-2] p.g.a.listeners.AnotherTarEventListener  : Processing AnotherTarEvent(payload=Kaboom!!)
+[pool-1-thread-2] p.g.a.listeners.AnotherTarEventListener  : Raising AnotherZarEvent(payload=Kaboom!!)
+[pool-1-thread-2] p.g.a.listeners.AnotherEventListener     : Processing AnotherZarEvent(payload=Kaboom!!)
 [pool-1-thread-2] p.g.a.listeners.AnotherZarEventListener  : Processing AnotherZarEvent(payload=Kaboom!!)
-[pool-1-thread-4] p.g.a.listeners.AnotherEventListener     : Processing AnotherBarEvent(payload=Kaboom!!)
+[pool-1-thread-2] p.g.a.listeners.AnotherEventListener     : Processing AnotherZarEvent(payload=Kaboom!!)
+[pool-1-thread-1] p.g.a.listeners.AnotherZarEventListener  : Processing AnotherZarEvent(payload=Kaboom!!)
+[pool-1-thread-4] p.g.a.l.AnotherZarEventSecondListener    : Second processing AnotherZarEvent(payload=Kaboom!!)
+[pool-1-thread-2] p.g.a.l.AnotherZarEventSecondListener    : Second processing AnotherZarEvent(payload=Kaboom!!)
 ```
+
+`ZarEventSecondListener` and `AnotherZarEventSecondListener` has no `@Order` specified so those listeners are not really 
+second in meaning of order - it's just yet another listener for ZarEvent showing that number of listeners for same exact
+event is not limited to one. 
