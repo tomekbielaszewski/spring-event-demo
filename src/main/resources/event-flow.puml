@@ -10,12 +10,22 @@ split
     -> TarEvent;
     :TarEventListener;
     -> ZarEvent;
-    :ZarEventListener;
-    end
+    split
+        :ZarEventListener;
+        end
+        split again
+        :ZarEventSecondListener;
+        end
+    end split
 split again
     -> ZarEvent;
+    split
     :ZarEventListener;
     end
+    split again
+    :ZarEventSecondListener;
+    end
+    end split
 end split
 
 start
