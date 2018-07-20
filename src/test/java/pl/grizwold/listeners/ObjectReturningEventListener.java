@@ -1,17 +1,16 @@
 package pl.grizwold.listeners;
 
 import org.springframework.context.event.EventListener;
-import pl.grizwold.model.Event;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class ObjectReturningEventListener<T> {
-    public Consumer<Event> consumer;
-    public Supplier<T> supplier;
+public class ObjectReturningEventListener<IN, OUT> {
+    public Consumer<IN> consumer;
+    public Supplier<OUT> supplier;
 
     @EventListener
-    public T execute(Event event) {
+    public OUT execute(IN event) {
         consumer.accept(event);
         return supplier.get();
     }
