@@ -15,6 +15,8 @@ import pl.grizwold.model.Event;
 
 import java.util.function.Consumer;
 
+import static org.mockito.Mockito.verify;
+
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = SingleEventListenerDemo.Config.class)
 public class SingleEventListenerDemo {
@@ -35,7 +37,7 @@ public class SingleEventListenerDemo {
         event.name = "single event";
         eventPublisher.publishEvent(event);
 
-        Mockito.verify(mockConsumer).accept(event);
+        verify(mockConsumer).accept(event);
     }
 
     @Configuration

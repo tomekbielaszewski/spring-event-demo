@@ -15,6 +15,8 @@ import pl.grizwold.model.Event;
 
 import java.util.function.Consumer;
 
+import static org.mockito.Mockito.verify;
+
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = DoubleEventListenersDemo.Config.class)
 public class DoubleEventListenersDemo {
@@ -43,8 +45,8 @@ public class DoubleEventListenersDemo {
         event.name = "single event";
         eventPublisher.publishEvent(event);
 
-        Mockito.verify(firstMockConsumer).accept(event);
-        Mockito.verify(secondMockConsumer).accept(event);
+        verify(firstMockConsumer).accept(event);
+        verify(secondMockConsumer).accept(event);
     }
 
     @Configuration
