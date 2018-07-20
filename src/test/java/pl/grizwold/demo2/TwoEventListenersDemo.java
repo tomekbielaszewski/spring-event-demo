@@ -24,10 +24,10 @@ public class TwoEventListenersDemo {
     private ApplicationEventPublisher eventPublisher;
 
     @Autowired
-    private VoidReturningEventListener first;
+    private VoidReturningEventListener<Event> first;
 
     @Autowired
-    private VoidReturningEventListener second;
+    private VoidReturningEventListener<Event> second;
 
     @Mock
     private Consumer<Event> firstMockConsumer;
@@ -41,7 +41,6 @@ public class TwoEventListenersDemo {
         second.consumer = secondMockConsumer;
 
         Event event = new Event();
-        event.name = "single event";
         eventPublisher.publishEvent(event);
 
         verify(firstMockConsumer).accept(event);

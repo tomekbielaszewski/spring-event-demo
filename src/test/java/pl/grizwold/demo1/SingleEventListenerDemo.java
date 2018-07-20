@@ -3,7 +3,6 @@ package pl.grizwold.demo1;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
@@ -25,16 +24,16 @@ public class SingleEventListenerDemo {
     private ApplicationEventPublisher eventPublisher;
 
     @Autowired
-    private VoidReturningEventListener eventListener;
+    private VoidReturningEventListener<Event> eventListener;
 
     @Mock
     private Consumer<Event> mockConsumer;
 
     @Test
     public void should_execute_listener_when_raising_single_event() throws Exception {
-        eventListener.consumer = mockConsumer;
         Event event = new Event();
-        event.name = "single event";
+        eventListener.consumer = mockConsumer;
+
         eventPublisher.publishEvent(event);
 
         verify(mockConsumer).accept(event);
