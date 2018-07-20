@@ -1,4 +1,4 @@
 package pl.grizwold.model;
 
-public class Event {
+public class Event1 {
 }
