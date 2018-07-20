@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import pl.grizwold.listeners.VoidReturningEventListener;
-import pl.grizwold.model.Event;
+import pl.grizwold.listeners.VoidReturningEvent1Listener;
+import pl.grizwold.model.Event1;
 
 import java.util.function.Consumer;
 
@@ -24,39 +24,39 @@ public class TwoEventListenersDemo {
     private ApplicationEventPublisher eventPublisher;
 
     @Autowired
-    private VoidReturningEventListener<Event> first;
+    private VoidReturningEvent1Listener first;
 
     @Autowired
-    private VoidReturningEventListener<Event> second;
+    private VoidReturningEvent1Listener second;
 
     @Mock
-    private Consumer<Event> firstMockConsumer;
+    private Consumer<Event1> firstMockConsumer;
 
     @Mock
-    private Consumer<Event> secondMockConsumer;
+    private Consumer<Event1> secondMockConsumer;
 
     @Test
     public void should_execute_listener_when_raising_single_event() throws Exception {
         first.consumer = firstMockConsumer;
         second.consumer = secondMockConsumer;
 
-        Event event = new Event();
-        eventPublisher.publishEvent(event);
+        Event1 event1 = new Event1();
+        eventPublisher.publishEvent(event1);
 
-        verify(firstMockConsumer).accept(event);
-        verify(secondMockConsumer).accept(event);
+        verify(firstMockConsumer).accept(event1);
+        verify(secondMockConsumer).accept(event1);
     }
 
     @Configuration
     static class Config {
         @Bean
-        public VoidReturningEventListener first() {
-            return new VoidReturningEventListener();
+        public VoidReturningEvent1Listener first() {
+            return new VoidReturningEvent1Listener();
         }
 
         @Bean
-        public VoidReturningEventListener second() {
-            return new VoidReturningEventListener();
+        public VoidReturningEvent1Listener second() {
+            return new VoidReturningEvent1Listener();
         }
     }
 }

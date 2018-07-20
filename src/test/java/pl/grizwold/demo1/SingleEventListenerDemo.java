@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import pl.grizwold.listeners.VoidReturningEventListener;
-import pl.grizwold.model.Event;
+import pl.grizwold.listeners.VoidReturningEvent1Listener;
+import pl.grizwold.model.Event1;
 
 import java.util.function.Consumer;
 
@@ -24,26 +24,26 @@ public class SingleEventListenerDemo {
     private ApplicationEventPublisher eventPublisher;
 
     @Autowired
-    private VoidReturningEventListener<Event> eventListener;
+    private VoidReturningEvent1Listener eventListener;
 
     @Mock
-    private Consumer<Event> mockConsumer;
+    private Consumer<Event1> mockConsumer;
 
     @Test
     public void should_execute_listener_when_raising_single_event() throws Exception {
-        Event event = new Event();
+        Event1 event1 = new Event1();
         eventListener.consumer = mockConsumer;
 
-        eventPublisher.publishEvent(event);
+        eventPublisher.publishEvent(event1);
 
-        verify(mockConsumer).accept(event);
+        verify(mockConsumer).accept(event1);
     }
 
     @Configuration
     static class Config {
         @Bean
-        public VoidReturningEventListener voidReturningEventListener() {
-            return new VoidReturningEventListener();
+        public VoidReturningEvent1Listener voidReturningEventListener() {
+            return new VoidReturningEvent1Listener();
         }
     }
 }
