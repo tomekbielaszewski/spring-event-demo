@@ -48,7 +48,7 @@ public class EventListenerRaisingMultipleNextEvents {
     private Consumer<Event3> thirdMockConsumer;
 
     @Test
-    public void should_execute_listener_when_raising_single_event() throws Exception {
+    public void should_execute_two_different_listeners_after_returning_list_of_events_from_first_listener() throws Exception {
         Event1 event1 = new Event1();
         Event2 event2 = new Event2();
         Event3 event3 = new Event3();

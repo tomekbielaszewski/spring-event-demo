@@ -38,7 +38,7 @@ public class EventListenerRaisingNextEvent {
     private Consumer<Event2> secondMockConsumer;
 
     @Test
-    public void should_execute_listener_when_raising_single_event() throws Exception {
+    public void should_execute_listeners_in_chain_when_first_listener_is_returning_next_event() throws Exception {
         Event1 event1 = new Event1();
         Event2 event2 = new Event2();
 

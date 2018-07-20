@@ -36,7 +36,7 @@ public class TwoEventListenersDemo {
     private Consumer<Event1> secondMockConsumer;
 
     @Test
-    public void should_execute_listener_when_raising_single_event() throws Exception {
+    public void should_execute_both_listeners_when_raising_single_event() throws Exception {
         first.consumer = firstMockConsumer;
         second.consumer = secondMockConsumer;
 
