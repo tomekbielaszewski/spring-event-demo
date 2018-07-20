@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import pl.grizwold.events.Event;
 import pl.grizwold.listeners.ObjectReturningEvent1Listener;
 import pl.grizwold.listeners.VoidReturningEvent2Listener;
 import pl.grizwold.model.Event1;
