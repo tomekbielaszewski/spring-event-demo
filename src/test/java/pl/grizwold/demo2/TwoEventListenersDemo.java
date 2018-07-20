@@ -3,7 +3,6 @@ package pl.grizwold.demo2;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
@@ -18,8 +17,8 @@ import java.util.function.Consumer;
 import static org.mockito.Mockito.verify;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = DoubleEventListenersDemo.Config.class)
-public class DoubleEventListenersDemo {
+@ContextConfiguration(classes = TwoEventListenersDemo.Config.class)
+public class TwoEventListenersDemo {
 
     @Autowired
     private ApplicationEventPublisher eventPublisher;
